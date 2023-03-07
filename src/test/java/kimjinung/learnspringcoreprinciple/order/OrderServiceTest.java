@@ -1,20 +1,27 @@
 package kimjinung.learnspringcoreprinciple.order;
 
+import kimjinung.learnspringcoreprinciple.AppConfig;
 import kimjinung.learnspringcoreprinciple.member.Grade;
 import kimjinung.learnspringcoreprinciple.member.Member;
 import kimjinung.learnspringcoreprinciple.member.MemberService;
 import kimjinung.learnspringcoreprinciple.member.MemberServiceImpl;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.internal.matchers.Or;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class OrderServiceTest {
+    MemberService memberService;
+    OrderService orderService;
 
-    MemberService memberService = new MemberServiceImpl();
-    OrderService orderService = new OrderServiceImpl();
-
+    @BeforeEach
+    public void beforeEach() {
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+        orderService = appConfig.orderService();
+    }
 
     @Test
     void createOrder() {
